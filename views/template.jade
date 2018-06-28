@@ -1,18 +1,21 @@
+doctype html
 html
 	head
 		title=title 
 		
 	block body
 		h1= text
-		p= message	
+		p= message
 		
-		form(action="/template1", method="Post")
 		form.login
-			input#username
-			input#password
-			button(onclick="submit") login
-	block postscript
-		script(src="js/template1.js")
+			input#Username
+			input#Password
+		button(onclick="move()") login
+script.
+	function move() {
+		window.location.href = '/home'
+	}
+
 
 
 		
