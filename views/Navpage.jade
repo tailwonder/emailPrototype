@@ -1,0 +1,12 @@
+maxin navLink(link, name)
+	li 
+		a(
+			href=link
+		) #{name}
+		
+ul
+	+navLink('./home', 'Home')
+	+navLink('./home', 'Inbox')
+	+navLink('./me', 'Compose')
+	+navLink('./home', 'Mail')
+	
