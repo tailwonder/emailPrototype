@@ -1,8 +1,8 @@
 doctype html
 html
 	head
-		title=title 
-		
+		title=title
+
 	block body
 		h1= text
 
@@ -13,6 +13,11 @@ html
 		button(onclick="move3()") Compose
 		br
 		button(onclick="move4()") Sent
+
+		ul
+			each item in messages
+				li= item.envelope.subject
+
 script.
 	function move1() {
 		window.location.href = '/home'
@@ -26,12 +31,12 @@ script.
 	function move4() {
 		window.location.href = '/sent'
 	}
-	
+
 html
 	body
 		include
-	
-	
+
+
 	mixin mail(title, Description, subject)
 		.mail
 			.mail__wrapper
