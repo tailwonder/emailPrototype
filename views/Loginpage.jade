@@ -1,21 +1,15 @@
 doctype html
 html
 	head
-		title=title 
-		
+		title=title
+
 	block body
 		h1= text
 		p= message
-		
-		form.login
-			input#Username
-			input#Password
-		button(onclick="move()") login
-script.
-	function move() {
-		window.location.href = '/home'
-	}
 
+		form(method='POST', action='/login')
+			input#Usernameinput(type="text", name="username")
+			input#Passwordinput(type="text", name="password")
+			button(type='submit') Submit
 
-
-		
+script(src="scripts/flash-client.js")
