@@ -6,6 +6,8 @@ var logger = require('morgan');
 var session = require('express-session')
 var bodyParser = require('body-parser')
 var flash = require('flash-express')
+var RedisStore = require('connect-redis')(session);
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,6 +17,9 @@ var inboxRouter = require('./routes/inbox');
 var composeRouter = require('./routes/compose');
 var sentRouter = require('./routes/sent');
 var app = express();
+
+
+if (global.Connection === undefined)  global.Connection = [];
 
 function checkAuth (req, res, next) {
 	console.log('checkAuth ' + req.url);
@@ -54,6 +59,8 @@ function checkAuth (req, res, next) {
 
   if (req.url === '/logout' || req.url === '/logout' ) {
     delete req.session.authenticated;
+    delete global.Connection[req.session.username]
+    delete req.session.username;
 
   }
 
@@ -76,19 +83,27 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
+/*
 var sess = {
   secret: 'keyboard cat',
   cookie: {},
   resave: true,
   saveUninitialized: true
 }
-
 if (app.get('env') === 'production') {
   app.set('trust proxy', 1) // trust first proxy
   sess.cookie.secure = true // serve secure cookies
 }
-
 app.use(session(sess))
+*/
+
+app.use(session({
+    store: new RedisStore(),
+    secret: 'keyboard cat',
+    saveUninitialized: true,
+    resave: false
+}));
+
 app.use(checkAuth);
 
 app.use('/', indexRouter);
