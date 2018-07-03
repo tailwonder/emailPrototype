@@ -15,6 +15,7 @@ var loginRouter = require('./routes/login');
 var homeRouter = require('./routes/home');
 var inboxRouter = require('./routes/inbox');
 var composeRouter = require('./routes/compose');
+var testConxRouter = require('./routes/test');
 var sentRouter = require('./routes/sent');
 var app = express();
 
@@ -23,10 +24,14 @@ if (global.Connection === undefined)  global.Connection = [];
 
 function checkAuth (req, res, next) {
 	console.log('checkAuth ' + req.url);
-  console.log('authed ' + req.session.authenticated);
+  	console.log('authed ' + req.session.authenticated);
 
 	// don't serve /secure to those not logged in
 	// you should add to this list, for each and every secure url
+	if (req.url === '/favicon.ico' ) {
+		res.status(204)
+	}
+
 	if (req.url === '/home' && (!req.session || !req.session.authenticated)) {
 		res.render('unauthorised', { status: 403 });
 		return;
@@ -59,6 +64,7 @@ function checkAuth (req, res, next) {
 
   if (req.url === '/logout' || req.url === '/logout' ) {
     delete req.session.authenticated;
+    global.Connection[req.session.username].close()
     delete global.Connection[req.session.username]
     delete req.session.username;
 
@@ -107,14 +113,15 @@ app.use(session({
 app.use(checkAuth);
 
 app.use('/', indexRouter);
+app.use('/inbox', inboxRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/logoff', loginRouter);
 app.use('/logout', loginRouter);
 app.use('/home', homeRouter);
-app.use('/inbox', inboxRouter);
 app.use('/compose', composeRouter);
 app.use('/sent', sentRouter);
+app.use('/test', testConxRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -130,6 +137,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+S
 });
 
 module.exports = app;
