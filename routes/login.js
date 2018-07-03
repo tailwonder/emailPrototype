@@ -30,6 +30,7 @@ async function connectImap(username, password, address, port, tls) {
       } catch(err) {
         console.log('Connection failure:', err.message);return false;
       }
+	global.Connection[username].onerror = function(error){console.log("Error:"+error)}
 
   }
   return true;
