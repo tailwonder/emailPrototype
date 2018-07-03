@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var to = require('./to');
 
 temp=require('emailjs-imap-client')
 /*
@@ -11,7 +12,7 @@ var port= 993
 config={ auth:{user: user, pass: password } }
 var client = new Client(server,port,config)
 */
-async function getMessageSubject() {
+async function getMessageSubject(username) {
 /*  try {
     await client.connect()
     console.log("Connected");
@@ -19,13 +20,12 @@ async function getMessageSubject() {
     console.log('Ohh no:', err.message);
   }
 */
-  const messages= await global.Connection[req.session.username].listMessages('INBOX', '1:10', ['uid', 'flags', 'envelope', 'body[]'])
-  console.log("loading messages");
 
-  messages.forEach((message) => {console.log('Message subject: '+ message.envelope.subject);  });
+  [err, messages]= await to(global.Connection[username].listMessages('INBOX', '1:10', ['uid', 'flags', 'envelope', 'body[]']))
 
   console.log("messages loaded: "+messages.length);
-  client.close()
+  //messages.forEach((message) => {console.log('Message subject: '+ message.envelope.subject);  });
+
   return messages
 
 }
@@ -33,9 +33,10 @@ async function getMessageSubject() {
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  getMessageSubject().then((messages) => {
+  console.log("loading messages:"+req.session.username);
+  getMessageSubject(req.session.username).then((messages) => {
     res.render('Inboxpage', { messages:  messages, user: req.session.username, title:" Inbox to the email " , tab:" Welcome to the inbox " , text: "Lets begin"  });
-  }, ()=> {res.render('inbox', { title:  "Connection failed" });}
+  }, ()=> {res.render('error', { title: "inbox retrieve error"});}
 
 );
 
