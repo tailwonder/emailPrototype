@@ -45,7 +45,8 @@ router.post('/', function (req, res, next) {
 
   console.log('headers:' + JSON.stringify(req.headers))
   console.log('in login:' + JSON.stringify(req.body))
-
+  console.log('in login:' + JSON.stringify(req.session))
+  
   if (req.body.username && req.body.password )
     connectImap(req.body.username,req.body.password)
 
