@@ -1,39 +1,66 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900')
+ul {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  list-style-type: none;
+  overflow: hidden;
+  background: #fff;
+  display: none;
+}
 
-body
-	font-family Lato, sans-serif
-	background #DEF6F7
-		
-.mails 
-	display flex
-	flex-wrap wrap
-	justify-content center
-	padding 3rem 0
+
+body {
+  padding: 50px;
+  background: lightblue;
+  text-align: center;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: red
+}
+
+a {
+  color: #00B7FF;
   
-.mail
-	flex 0 0 180px
-	margin .75rem
-	background white
-	border-radius 6px
-	box-shadow 0 2px 20px rgba(black, 0.1)
-	transition 0.1s
-  
-	&:hover
-	transform translateY(-4px)
-	box-shadow 0 6px 20px rgba(black, 0.1)
-  
-	&__wrapper
-	overflow hidden
-	border-radius 6px
+
+}
+
+button{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    float: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 16px;
+}
+ div {
+    width: 320px;
     
-	&__content
-	padding 1rem 2rem
+    padding: 10px;
+    border: 5px solid gray;
+    margin: 5.8;
+    font: 18px "Lucida Grande";
+    font-weight: bold;
+    color: #2C2A35;
+    background-color: #F5CC23;
+    display: table row;
     
-	&__title
-	margin .5rem 0 0
-	font-weight 900
-    
-	&__Discription 
-	font-size 1.1rem
-	line-height 1.5
-	margin-bottom .5rem
+}
+ 
+container {
+	width: 1000px;
+	height: 500px;
+	border:1px solid red;
+	margin: 5.8;
+	background-color: black;
+}
+ col {
+	width: 250px;
+	height: 300px;
+	background color: yellow;
+	float: left;
+}

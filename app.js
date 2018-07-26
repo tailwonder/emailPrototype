@@ -7,7 +7,7 @@ var session = require('express-session')
 var bodyParser = require('body-parser')
 var flash = require('flash-express')
 var RedisStore = require('connect-redis')(session);
-
+var request = require('supertest');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -17,7 +17,9 @@ var inboxRouter = require('./routes/inbox');
 var composeRouter = require('./routes/compose');
 var testConxRouter = require('./routes/test');
 var sentRouter = require('./routes/sent');
+var layoutpageRouter = require('./routes/layoutpage');
 var app = express();
+
 
 
 if (global.Connection === undefined)  global.Connection = [];
@@ -78,6 +80,8 @@ function checkAuth (req, res, next) {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+
+
 app.use(logger('dev'));
 
 app.use(bodyParser.json() );       // to support JSON-encoded bodies
@@ -122,6 +126,7 @@ app.use('/home', homeRouter);
 app.use('/compose', composeRouter);
 app.use('/sent', sentRouter);
 app.use('/test', testConxRouter);
+app.use('/layoutpage', layoutpageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -137,7 +142,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-S
 });
 
 module.exports = app;

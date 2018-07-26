@@ -34,7 +34,7 @@ router.get('/', function(req, res, next) {
 
   getMessageSubject().then((messages) => {
     res.render('Inboxpage', { messages:  messages, user: user, title:" Inbox to the email " , tab:" Welcome to the inbox " , text: "Lets begin"  });
-  }, ()=> {res.render('inbox', { title:  "Connection failed" });}
+  }, ()=> {res.render('Inboxpage', { title:  "Connection failed" });}
 
 );
 

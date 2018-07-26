@@ -1,18 +1,28 @@
 doctype html
 html
 	head
+		link(rel='stylesheet', href='/stylesheets/SentStyle.css')
 		title=title 
 		
 	body
 		h1= text
 		
 		button(onclick="move1()") Home
-		br
+		
 		button(onclick="move2()") Inbox
-		br
+		
 		button(onclick="move3()") Compose
-		br
+		
 		button(onclick="move4()") Sent
+		
+		<div clas= "col">
+		<p>to who </p>
+		<p>Subject</p>
+		<p>Attachment</p>
+		<p>Brief body</p>
+		</div>
+			
+		
 script.
 	function move1() {
 		window.location.href = '/home'

@@ -1,23 +1,33 @@
 doctype html
 html
 	head
-		title=title
+		title= title
+		link(rel= "stylesheet" href= "/stylesheets/InboxStyle.css")
+		
+	
 
 	block body
-		h1= text
+	
+	h1= text
+	
+	
+	button(onclick="move1()") Home
+	
+	button(onclick="move2()") Inbox
+	
+	button(onclick="move3()") Compose
+	
+	button(onclick="move4()") Sent
 
-		button(onclick="move1()") Home
-		br
-		button(onclick="move2()") Inbox
-		br
-		button(onclick="move3()") Compose
-		br
-		button(onclick="move4()") Sent
-
-		ul
-			each item in messages
-				li= item.envelope.subject
-
+	<div clas= "col">
+	<p>Sender</p>
+	<p>Subject</p>
+	<p>Attachment</p>
+	<p>Brief body</p>
+	</div>
+			
+	
+		
 script.
 	function move1() {
 		window.location.href = '/home'
@@ -32,18 +42,6 @@ script.
 		window.location.href = '/sent'
 	}
 
-html
-	body
-		include
+	
 
-
-	mixin mail(title, Description, subject)
-		.mail
-			.mail__wrapper
-				.mail__content
-					h2.mail__title #{title}
-					p.mail__subject #{subject}
-					p.mail__Description #{Description}
-
-	.mails
-		+mail( "Anderson", "how far have you gotten with the email?", "Progress on the email")
+	

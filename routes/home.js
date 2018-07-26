@@ -3,7 +3,7 @@ var router = express.Router();
 
 // ------
 router.get('/', function(req, res, next) {
-  res.render('Homepage', {title:" HomePage to the email " , tab:" Welcome you have succeeded in linking the pages " , text: "Lets begin"});
+  res.render('Homepage', {title:" HomePage to the email " , tab:" Welcome you have succeeded in linking the pages " , text: "HOME"});
 }); 
 
 

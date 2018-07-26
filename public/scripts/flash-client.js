@@ -83,4 +83,3 @@ flash.prototype.fadeOut = function (div) {
 
 var f = new flash();
 var d = f.getFlash();
-

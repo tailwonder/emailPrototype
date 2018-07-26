@@ -1,17 +1,18 @@
 doctype html
 html
 	head
+		link(rel='stylesheet', href='/stylesheets/HomeStyle.css')
 		title=title 
 		
 	body
 		h1= text
 		
 		button(onclick="move1()") Home
-		br
+		
 		button(onclick="move2()") Inbox
-		br
+		
 		button(onclick="move3()") Compose
-		br
+		
 		button(onclick="move4()") Sent
 script.
 	function move1() {

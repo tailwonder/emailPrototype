@@ -21,11 +21,13 @@ async function getMessageSubject(username) {
   }
 */
 
-  [err, messages]= await to(global.Connection[username].listMessages('INBOX', '1:10', ['uid', 'flags', 'envelope', 'body[]']))
+  [err, messages]= await to(global.Connection[username].listMessages('INBOX', '1:10', ['uid', 'flags', 'envelope', 'body[]', 'bodystructure']))
 
   console.log("messages loaded: "+messages.length);
-  //messages.forEach((message) => {console.log('Message subject: '+ message.envelope.subject);  });
-
+  messages.forEach((message) => {console.log('Message subject: '+ message.envelope.subject);  });
+  console.log('body:'+JSON.stringify(messages[0]))
+  //messages.forEach((message) => {console.log('Message body: '+ message.body);  });
+  
   return messages
 
 }
@@ -35,7 +37,7 @@ router.get('/', function(req, res, next) {
 
   console.log("loading messages:"+req.session.username);
   getMessageSubject(req.session.username).then((messages) => {
-    res.render('Inboxpage', { messages:  messages, user: req.session.username, title:" Inbox to the email " , tab:" Welcome to the inbox " , text: "Lets begin"  });
+    res.render('Inboxpage', { messages:  messages, user: req.session.username, title:" Inbox to the email " , tab:" Welcome to the inbox " , text: "Inbox Page"  });
   }, ()=> {res.render('error', { title: "inbox retrieve error"});}
 
 );
@@ -47,3 +49,10 @@ router.get('/', function(req, res, next) {
 
 
 module.exports = router;
+
+
+
+
+
+
+

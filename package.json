@@ -6,15 +6,17 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "connect-redis": "~3.3.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "emailjs-imap-client": "^3.0.0",
     "express": "~4.16.0",
-    "connect-redis": "~3.3.3",
     "express-session": "^1.15.6",
     "flash-express": "git://github.com/deveshgoyal/flash-express.git",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "prod": "^1.0.1",
+    "supertest": "^1.2.0"
   }
 }

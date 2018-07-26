@@ -1,18 +1,26 @@
 doctype html
 html
 	head
+		link(rel='stylesheet', href='/stylesheets/ComposeStyle.css')
 		title= title 
 		
 	block body
 		h1= text
 
 		button(onclick="move1()") Home
-		br
+		
 		button(onclick="move2()") Inbox
-		br
+		
 		button(onclick="move3()") Compose
-		br
+		
 		button(onclick="move4()") Sent
+		
+		
+		h2 
+		<div> 
+		<p>hello</p>
+		</div>
+		
 script.
 	function move1() {
 		window.location.href = '/home'
