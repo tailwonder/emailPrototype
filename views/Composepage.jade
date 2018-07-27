@@ -6,6 +6,7 @@ html
 		
 	block body
 		h1= text
+		container
 
 		button(onclick="move1()") Home
 		
@@ -18,7 +19,17 @@ html
 		
 		h2 
 		<div> 
-		<p>hello</p>
+		<p>
+		form(method='POST', action='/send')
+			input#Email(type="text", name="Email")
+			br
+			input#Subject(type="text", name="Subject")
+			br
+			input#BODY(type="text", name="Body")
+		
+			br
+			button(type='submit') Submit
+		</p>
 		</div>
 		
 script.
